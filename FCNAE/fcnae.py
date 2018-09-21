@@ -68,11 +68,11 @@ class FCNAE:
         return [output_height, output_width]
 
     def neuralnet(self):
-        scale = (self.stride**2) - 2 # If stride is N, then the multiple of the number of channels is (stride**2 - 1)
+        scale = (self.stride**2) - 1 # If stride is N, then the multiple of the number of channels is (stride**2 - 1)
         input_channels_list = [(self.n_channel * (scale**i)) for i in range(0, self.n_layers)]
-        print(input_channels_list)
+        #print(input_channels_list)
         output_channels_list = [(self.n_channel * (scale**i)) for i in range(1, self.n_layers + 1)]
-        print(output_channels_list)
+        #print(output_channels_list)
         inputs_shape_list = []
 
         '''
@@ -91,7 +91,7 @@ class FCNAE:
                                          name="encoder_{}".format(i),
                                          padding="SAME",
                                          activation=tf.nn.relu)
-            print(encoder.shape)
+            #print(encoder.shape)
 
         '''
        Decoder. The number of layers is same 'n_layer'
@@ -109,7 +109,7 @@ class FCNAE:
                                              name="decoder_{}".format(i),
                                              padding="SAME",
                                              activation=tf.nn.relu)
-            print(decoder.shape)
+            #print(decoder.shape)
 
         self.output = self._conv2d_layer(decoder, filters_size=[3, 3, self.n_channel, self.n_channel], padding="SAME", name="reconstruction", activation=tf.nn.sigmoid)
 
