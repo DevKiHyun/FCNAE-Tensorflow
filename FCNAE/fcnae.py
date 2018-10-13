@@ -71,7 +71,7 @@ class FCNAE:
         return [output_height, output_width]
 
     def neuralnet(self):
-        scale = (self.stride**N) - 1 # If stride is N, then the multiple of the number of channels is (stride**2 - 1)
+        scale = (self.stride**2) - 1 # If stride is N, then the multiple of the number of channels is (stride**2 - 1)
         input_channels_list = [(self.n_channel * (scale**i)) for i in range(0, self.n_layers)]
         #print(input_channels_list)
         output_channels_list = [(self.n_channel * (scale**i)) for i in range(1, self.n_layers + 1)]
