@@ -33,7 +33,10 @@ class FCNAE:
         if output_shape == None:
             output_size = tf.stack(
                 self._calc_output_size([inputs_height, inputs_width], [filters_height, filters_width], strides, padding))  # tf.pack renamed tf.stack
-            output_shape = [batch_size, *output_size, output_channels]
+        else:
+            output_size = [output_shape[1], output_shape[2]]
+
+        output_shape = [batch_size, *output_size, output_channels]
 
         filters = self._get_conv_filters(transpose_filters_shape, name)
         strides = [1, *strides, 1]
@@ -68,7 +71,7 @@ class FCNAE:
         return [output_height, output_width]
 
     def neuralnet(self):
-        scale = (self.stride**2) - 1 # If stride is N, then the multiple of the number of channels is (stride**N - 1)
+        scale = (self.stride**N) - 1 # If stride is N, then the multiple of the number of channels is (stride**2 - 1)
         input_channels_list = [(self.n_channel * (scale**i)) for i in range(0, self.n_layers)]
         #print(input_channels_list)
         output_channels_list = [(self.n_channel * (scale**i)) for i in range(1, self.n_layers + 1)]
@@ -83,7 +86,7 @@ class FCNAE:
         for i in range(self.n_layers):
             in_channels = input_channels_list[i]
             output_channels = output_channels_list[i]
-            inputs_shape = tf.shape(encoder)
+            inputs_shape = encoder.get_shape().as_list()
             inputs_shape_list.append(inputs_shape)
             encoder = self._conv2d_layer(encoder,
                                          filters_size=[6,6,in_channels, output_channels],
