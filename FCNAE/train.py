@@ -22,7 +22,7 @@ def training(FCNAE, config):
     # Optimize Network
     FCNAE.optimize(config)
     '''
-    # Summary of RDN Network
+    # Summary of VAE Network
     FCNAE.summary()
     '''
 
