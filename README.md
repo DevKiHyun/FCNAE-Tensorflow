@@ -1,7 +1,7 @@
 # FCNAE-Tensorflow (2018/09/21)
 
 ## Introduction
-I implement a tensorflow model for Staked Autoencoder using Fully Convolutional Network. 
+I implement a tensorflow model of a Staked Autoencoder using Fully Convolutional Network. 
 - I use mnist dataset as training dataset.
 
 ## Environment
