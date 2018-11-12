@@ -13,9 +13,8 @@ I implement a tensorflow model for Staked Autoencoder using Fully Convolutional 
 - matplotlib
 
 ## Files
-- main.py : Execute train.py and pass the default value.
 - fcnae.py : Model definition.
-- train.py : Train the model and represent the test images.
+- main.py : Train the model and pass the default value.
 
 ## How to use
 ### Training
